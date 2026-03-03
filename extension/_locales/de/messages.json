@@ -1,0 +1,8 @@
+{
+  "extName": {
+    "message": "Mailto zu Gmail (Safari)"
+  },
+  "extDescription": {
+    "message": "Fängt mailto-Links ab und öffnet Gmail Compose mit vorausgefüllten Feldern."
+  }
+}

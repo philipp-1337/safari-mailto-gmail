@@ -1,113 +1,116 @@
 # Mailto to Gmail for Safari
 
-Eine schlanke Safari Extension für alle, die in Safari auf `mailto:` klicken und sofort in Gmail landen wollen.  
-Statt Apple Mail zu öffnen, startet direkt der Gmail-Compose-Dialog im Browser, inklusive vorausgefüllter Felder aus dem Link.
+Languages: [English](./README.md) | [Deutsch](./README.de.md)
+
+A lightweight Safari extension for anyone who clicks a `mailto:` link in Safari and wants Gmail to open instantly.  
+Instead of launching Apple Mail, it opens the Gmail compose dialog in your browser with all fields prefilled from the link.
 
 ## Features
 
-- Fängt `mailto:`-Links in Safari ab
-- Öffnet Gmail Compose direkt im Browser
-- Übernimmt `to`, `cc`, `bcc`, `subject`, `body`
-- Kein Vendor-Lock: basiert auf Safari Web Extension + nativer Host-App
+- Intercepts `mailto:` links in Safari
+- Opens Gmail compose directly in the browser
+- Preserves `to`, `cc`, `bcc`, `subject`, and `body`
+- Supports English and German (extension metadata and host app UI)
+- No vendor lock-in: built with a Safari Web Extension + native host app
 
-## Beispiel
+## Example
 
-Aus:
+From:
 
-```html
-mailto:max@example.com?subject=Hallo&body=Test
+```text
+mailto:max@example.com?subject=Hello&body=Test
 ```
 
-wird:
+To:
 
-```html
-https://mail.google.com/mail/u/0/?view=cm&fs=1&to=max@example.com&su=Hallo&body=Test
+```text
+https://mail.google.com/mail/u/0/?view=cm&fs=1&to=max@example.com&su=Hello&body=Test
 ```
 
-## Projektstruktur
+## Project Structure
 
-- `extension/manifest.json`: Extension-Metadaten
-- `extension/content.js`: erkennt Klicks auf `mailto:`
-- `extension/background.js`: parst `mailto:` und baut Gmail-URL
-- `scripts/create_safari_project.sh`: erzeugt Xcode-Projekt via Apple Converter
+- `extension/manifest.json`: extension metadata
+- `extension/content.js`: detects clicks on `mailto:` links
+- `extension/background.js`: parses `mailto:` and builds the Gmail URL
+- `scripts/create_safari_project.sh`: generates the Xcode project via Apple's converter
 
-## Setup (komplett)
+## Full Setup
 
-### 1) Xcode installieren
+### 1) Install Xcode
 
-`safari-web-extension-converter` ist Teil von Xcode und kein separates Paket.
+`safari-web-extension-converter` is part of Xcode (not a separate package).
 
-1. Xcode aus dem App Store installieren
-2. Xcode einmal starten und initiales Setup abschließen
-3. Developer-Ordner setzen:
+1. Install Xcode from the App Store
+2. Launch Xcode once and complete the initial setup
+3. Select the developer directory:
 
 ```bash
 sudo xcode-select --switch /Applications/Xcode.app/Contents/Developer
 ```
 
-4. Lizenz + First-Launch-Komponenten bestätigen:
+4. Accept license and install first-launch components:
 
 ```bash
 sudo xcodebuild -runFirstLaunch
 ```
 
-5. Prüfen, ob der Converter verfügbar ist:
+5. Verify the converter is available:
 
 ```bash
 xcrun --find safari-web-extension-converter
 ```
 
-### 2) Safari-Projekt erzeugen
+### 2) Generate the Safari project
 
-Im Projektverzeichnis ausführen:
+Run this from the project root:
 
 ```bash
 ./scripts/create_safari_project.sh
 ```
 
-Das erzeugt ein Xcode-Projekt unter `MailtoToGmail/`.
+This creates an Xcode project inside `MailtoToGmail/`.
 
-## Xcode + Safari: Klick-für-Klick
+## Xcode + Safari: Click-by-Click
 
-### 1) Projekt öffnen
+### 1) Open the project
 
-`MailtoToGmail/MailtoToGmail.xcodeproj` in Xcode öffnen.
+Open `MailtoToGmail/MailtoToGmail.xcodeproj` in Xcode.
 
-### 2) Signing konfigurieren
+### 2) Configure signing
 
-1. Links das blaue Projekt `MailtoToGmail` auswählen
-2. Unter `TARGETS` zuerst `MailtoToGmail` öffnen
-3. `Signing & Capabilities`:
-   - `Automatically manage signing`: aktiv
-   - `Team`: dein Team (z. B. Personal Team)
-4. Unter `TARGETS` `MailtoToGmail Extension` öffnen
-5. `Signing & Capabilities`:
-   - `Automatically manage signing`: aktiv
-   - `Team`: exakt dasselbe Team wie oben
+1. In the left sidebar, click the blue `MailtoToGmail` project
+2. Under `TARGETS`, select `MailtoToGmail`
+3. Open `Signing & Capabilities`:
+   - `Automatically manage signing`: enabled
+   - `Team`: your team (for example, Personal Team)
+4. Under `TARGETS`, select `MailtoToGmail Extension`
+5. Open `Signing & Capabilities`:
+   - `Automatically manage signing`: enabled
+   - `Team`: exactly the same team as above
 
-### 3) Build und Start
+### 3) Build and run
 
-1. Oben als Scheme `MailtoToGmail` auswählen (nicht nur `MailtoToGmail Extension`)
-2. `Product > Clean Build Folder`
-3. `Run` drücken
-4. In der gestarteten App auf `Quit and Open Safari Extensions Preferences...` klicken
+1. Select the `MailtoToGmail` scheme at the top (not only `MailtoToGmail Extension`)
+2. Click `Product > Clean Build Folder`
+3. Click `Run`
+4. In the launched app, click `Quit and Open Safari Extensions Preferences...`
 
-### 4) Safari aktivieren
+### 4) Enable in Safari
 
-1. Safari öffnen
-2. `Safari > Einstellungen > Erweiterungen`
-3. `MailtoToGmail` aktivieren
-4. Für die Extension unter Website-Zugriff auf **Alle Websites** stellen  
-   (ohne diese Berechtigung können `mailto:`-Klicks nicht zuverlässig abgefangen werden)
+1. Open Safari
+2. Go to `Safari > Settings > Extensions`
+3. Enable `MailtoToGmail`
+4. Set website access for the extension to **All Websites**  
+   (without this permission, `mailto:` clicks may not be intercepted reliably)
 
 ## Troubleshooting
 
 - `safari-web-extension-converter not found`:
-  - Xcode nicht installiert oder nicht aktiv (`xcode-select --switch ...` fehlt)
+  - Xcode is not installed or not selected (`xcode-select --switch ...` missing)
 - `Embedded binary's bundle identifier is not prefixed...`:
-  - App- und Extension-Bundle-ID müssen denselben Prefix nutzen
-- Extension erscheint nicht in Safari:
-  - Scheme prüfen (`MailtoToGmail`)
-  - Signing in beiden Targets mit demselben Team
-  - Safari und Xcode neu starten
-  - In Safari Website-Zugriff auf `Alle Websites` setzen
+  - app and extension bundle IDs must share the same prefix
+- Extension does not appear in Safari:
+  - verify scheme is `MailtoToGmail`
+  - ensure both targets use the same signing team
+  - restart Safari and Xcode
+  - set Safari website access to `All Websites`

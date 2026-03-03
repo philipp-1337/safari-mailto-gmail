@@ -21,6 +21,7 @@
 		B95A66E52F571E9300F0DE51 /* icons in Resources */ = {isa = PBXBuildFile; fileRef = B95A66E12F571E9300F0DE51 /* icons */; };
 		B95A66E62F571E9300F0DE51 /* manifest.json in Resources */ = {isa = PBXBuildFile; fileRef = B95A66E22F571E9300F0DE51 /* manifest.json */; };
 		B95A66E72F571E9300F0DE51 /* content.js in Resources */ = {isa = PBXBuildFile; fileRef = B95A66E32F571E9300F0DE51 /* content.js */; };
+		C57C2B2A2FB8F6C100A9D1AA /* _locales in Resources */ = {isa = PBXBuildFile; fileRef = C57C2B292FB8F6C100A9D1AA /* _locales */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +66,7 @@
 		B95A66E12F571E9300F0DE51 /* icons */ = {isa = PBXFileReference; lastKnownFileType = folder; name = icons; path = ../../extension/icons; sourceTree = "<group>"; };
 		B95A66E22F571E9300F0DE51 /* manifest.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = manifest.json; path = ../../extension/manifest.json; sourceTree = "<group>"; };
 		B95A66E32F571E9300F0DE51 /* content.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; name = content.js; path = ../../extension/content.js; sourceTree = "<group>"; };
+		C57C2B292FB8F6C100A9D1AA /* _locales */ = {isa = PBXFileReference; lastKnownFileType = folder; name = _locales; path = ../../extension/_locales; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,6 +144,7 @@
 			children = (
 				B95A66E02F571E9300F0DE51 /* background.js */,
 				B95A66E12F571E9300F0DE51 /* icons */,
+				C57C2B292FB8F6C100A9D1AA /* _locales */,
 				B95A66E22F571E9300F0DE51 /* manifest.json */,
 				B95A66E32F571E9300F0DE51 /* content.js */,
 			);
@@ -252,6 +255,7 @@
 				B95A66E42F571E9300F0DE51 /* background.js in Resources */,
 				B95A66E62F571E9300F0DE51 /* manifest.json in Resources */,
 				B95A66E52F571E9300F0DE51 /* icons in Resources */,
+				C57C2B2A2FB8F6C100A9D1AA /* _locales in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

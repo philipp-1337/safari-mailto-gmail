@@ -1,8 +1,9 @@
 {
   "manifest_version": 3,
-  "name": "Mailto to Gmail (Safari)",
+  "default_locale": "en",
+  "name": "__MSG_extName__",
   "version": "1.0.0",
-  "description": "Fängt mailto-Links ab und öffnet Gmail Compose mit vorausgefüllten Feldern.",
+  "description": "__MSG_extDescription__",
   "permissions": ["tabs"],
   "background": {
     "service_worker": "background.js"
